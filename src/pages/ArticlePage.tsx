@@ -23,18 +23,39 @@ export default function ArticlePage({ category }: ArticlePageProps) {
     setArticle(meta)
 
     if (meta) {
-      // 动态导入 markdown 文件
-      import(`../content/${meta.category}/${meta.slug}.md`)
-        .then((mod) => {
-          // Vite 会将 .md 文件作为字符串导入
-          setContent((mod as { default: string }).default || (mod as { raw: string }).raw || '')
+           import(`../content/${meta.category}/${meta.slug}.md`)
+        .then(async (mod) => {
+          let raw = (mod as { default: string }).default || ''
+          
+          // 生产构建时 Vite 可能将 .md 内联为 data URL（如 data:text/markdown;base64,...）
+          if (raw.startsWith('data:')) {
+            const commaIdx = raw.indexOf(',')
+            if (commaIdx > -1) {
+              const metaStr = raw.slice(0, commaIdx)
+              const payload = raw.slice(commaIdx + 1)
+              if (metaStr.includes(';base64')) {
+                try {
+                  raw = atob(payload)
+                } catch {
+                  raw = ''
+                }
+              } else {
+                raw = decodeURIComponent(payload)
+              }
+            }
+          } else if (raw.startsWith('/') || raw.startsWith('http')) {
+            try {
+              const res = await fetch(raw)
+              raw = await res.text()
+            } catch {
+              raw = ''
+            }
+          }
+
+          setContent(raw)
         })
         .catch(() => {
-          // fallback: 使用 fetch 加载
-          fetch(`/src/content/${meta.category}/${meta.slug}.md`)
-            .then((res) => res.text())
-            .then((text) => setContent(text))
-            .catch(() => setContent(''))
+          setContent('')
         })
     }
   }, [slug])
