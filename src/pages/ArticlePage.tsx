@@ -28,20 +28,12 @@ export default function ArticlePage({ category }: ArticlePageProps) {
           let raw = (mod as { default: string }).default || ''
           
           // 生产构建时 Vite 可能将 .md 内联为 data URL（如 data:text/markdown;base64,...）
-          if (raw.startsWith('data:')) {
-            const commaIdx = raw.indexOf(',')
-            if (commaIdx > -1) {
-              const metaStr = raw.slice(0, commaIdx)
-              const payload = raw.slice(commaIdx + 1)
-              if (metaStr.includes(';base64')) {
-                try {
-                  raw = atob(payload)
-                } catch {
-                  raw = ''
-                }
-              } else {
-                raw = decodeURIComponent(payload)
-              }
+                   if (raw.startsWith('data:')) {
+            try {
+              const res = await fetch(raw)
+              raw = await res.text()
+            } catch {
+              raw = ''
             }
           } else if (raw.startsWith('/') || raw.startsWith('http')) {
             try {
