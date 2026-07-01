@@ -6,6 +6,7 @@ import PhotographyPage from './pages/PhotographyPage'
 import PaintingPage from './pages/PaintingPage'
 import ArticlePage from './pages/ArticlePage'
 import AboutPage from './pages/AboutPage'
+import AdminPage from './pages/AdminPage'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/painting" element={<PaintingPage />} />
         <Route path="/painting/:slug" element={<ArticlePage category="painting" />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </Layout>
   )
