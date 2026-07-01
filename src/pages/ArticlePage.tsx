@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { getArticleBySlug, ArticleMeta } from '../data/articles'
+import { getArticleBySlug, fetchArticle, ArticleMeta } from '../data/articles'
 import MarkdownRenderer from '../components/MarkdownRenderer'
 
 interface ArticlePageProps {
@@ -19,37 +19,17 @@ export default function ArticlePage({ category }: ArticlePageProps) {
   const [content, setContent] = useState<string>('')
 
   useEffect(() => {
+    // 先从本地静态数据获取元信息
     const meta = getArticleBySlug(slug || '')
     setArticle(meta)
 
-    if (meta) {
-           import(`../content/${meta.category}/${meta.slug}.md`)
-        .then(async (mod) => {
-          let raw = (mod as { default: string }).default || ''
-          
-          // 生产构建时 Vite 可能将 .md 内联为 data URL（如 data:text/markdown;base64,...）
-                   if (raw.startsWith('data:')) {
-            try {
-              const res = await fetch(raw)
-              raw = await res.text()
-            } catch {
-              raw = ''
-            }
-          } else if (raw.startsWith('/') || raw.startsWith('http')) {
-            try {
-              const res = await fetch(raw)
-              raw = await res.text()
-            } catch {
-              raw = ''
-            }
-          }
-
-          setContent(raw)
-        })
-        .catch(() => {
-          setContent('')
-        })
-    }
+    // 尝试从 Supabase 获取文章内容（含正文）
+    fetchArticle(slug || '').then((remote) => {
+      if (remote) {
+        setArticle(remote)
+        if (remote.content) setContent(remote.content)
+      }
+    })
   }, [slug])
 
   if (!article) {
