@@ -1,8 +1,13 @@
+import { useEffect, useState } from 'react'
 import ArticleList from '../components/ArticleList'
-import { getArticlesByCategory } from '../data/articles'
+import { getArticlesByCategory, fetchArticles, ArticleMeta } from '../data/articles'
 
 export default function PaintingPage() {
-  const articles = getArticlesByCategory('painting')
+  const [articles, setArticles] = useState<ArticleMeta[]>(() => getArticlesByCategory('painting'))
+
+  useEffect(() => {
+    fetchArticles().then((list) => setArticles(list.filter((a) => a.category === 'painting')))
+  }, [])
 
   return (
     <ArticleList
