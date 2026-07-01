@@ -1,7 +1,8 @@
+import { useEffect, useState } from 'react'
 import HeroSection from '../components/HeroSection'
 import CategoryCard from '../components/CategoryCard'
 import ArticleCard from '../components/ArticleCard'
-import { getRecentArticles } from '../data/articles'
+import { getRecentArticles, fetchArticles, ArticleMeta } from '../data/articles'
 
 const categories = [
   {
@@ -34,7 +35,11 @@ const categories = [
 ]
 
 export default function HomePage() {
-  const recentArticles = getRecentArticles(3)
+  const [recentArticles, setRecentArticles] = useState<ArticleMeta[]>(() => getRecentArticles(3))
+
+  useEffect(() => {
+    fetchArticles().then((list) => setRecentArticles(list.slice(0, 4)))
+  }, [])
 
   return (
     <div>
