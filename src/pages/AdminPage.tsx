@@ -1,10 +1,9 @@
 import { useState } from 'react'
-import { createClient } from '@supabase/supabase-js'
-import { SUPABASE_URL } from '../lib/config'
+import { supabase } from '../lib/supabase'
 import MarkdownRenderer from '../components/MarkdownRenderer'
 
-// 用户自行输入 Supabase service key（仅本地使用），不硬编码到源码中
-const KEY_HINT = 'sb_secret_'
+// 管理员密码（与 Supabase 密钥无关，纯前端门禁）
+const ADMIN_PASSWORD = 'admin123'
 
 const emptyForm = {
   slug: '',
@@ -34,9 +33,7 @@ export default function AdminPage() {
     }
 
     setStatus(null)
-    const adminClient = createClient(SUPABASE_URL, pwd)
-    // 使用 service key 写入
-    const { error } = await adminClient.from('articles').upsert({
+    const { error } = await supabase.from('articles').upsert({
       slug: form.slug,
       title: form.title,
       category: form.category,
@@ -58,17 +55,17 @@ export default function AdminPage() {
     return (
       <div className="max-w-sm mx-auto py-20 text-center">
         <h1 className="text-2xl font-bold mb-4">🔒 管理员后台</h1>
-        <p className="text-gray-500 mb-4 text-sm">输入 Supabase Service Key（开头为 {KEY_HINT}...）</p>
+        <p className="text-gray-500 mb-4 text-sm">输入管理员密码</p>
         <input
           type="password"
           value={pwd}
           onChange={(e) => setPwd(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && pwd.startsWith(KEY_HINT) && setUnlocked(true)}
-          placeholder="sb_secret_..."
+          onKeyDown={(e) => e.key === 'Enter' && pwd === ADMIN_PASSWORD && setUnlocked(true)}
+          placeholder="输入管理员密码"
           className="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 text-center"
         />
         <button
-          onClick={() => pwd.startsWith(KEY_HINT) && setUnlocked(true)}
+          onClick={() => pwd === ADMIN_PASSWORD && setUnlocked(true)}
           className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
         >
           解锁
