@@ -7,7 +7,7 @@ export default function AboutPage() {
         <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 mb-8">
           <h2 className="text-xl font-semibold text-gray-800 mb-4">关于本站</h2>
           <p className="text-gray-600 leading-relaxed mb-4">
-            这是一个记录个人成长的博客，涵盖三个主要领域：
+            这是一个记录个人成长的博客，涵盖几个主要领域：
           </p>
           <ul className="space-y-3 text-gray-600">
             <li className="flex items-start">
