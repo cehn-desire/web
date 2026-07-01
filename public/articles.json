@@ -1,0 +1,67 @@
+{
+  "articles": [
+    {
+      "slug": "getting-started",
+      "title": "涓撲笟瀛︿範涔嬭矾锛氫粠鍏ラ棬鍒扮簿閫?,
+      "category": "learning",
+      "date": "2026-06-20",
+      "readTime": "5 鍒嗛挓",
+      "excerpt": "鎺㈢储楂樻晥瀛︿範鏂规硶锛屾瀯寤轰釜浜虹煡璇嗕綋绯伙紝璁╀笓涓氬涔犳洿鏈夋垚鏁堛€?,
+      "tags": ["鏂规硶璁?, "鏁堢巼"]
+    },
+    {
+      "slug": "tech-stack-2026",
+      "title": "2026 骞村€煎緱鍏虫敞鐨勬妧鏈秼鍔?,
+      "category": "learning",
+      "date": "2026-06-15",
+      "readTime": "8 鍒嗛挓",
+      "excerpt": "浠?AI 鍒?Web 寮€鍙戯紝鐩樼偣 2026 骞存渶鍊煎緱鍏虫敞鐨勬妧鏈彂灞曟柟鍚戙€?,
+      "tags": ["鎶€鏈秼鍔?, "鍓嶇", "AI"]
+    },
+    {
+      "slug": "street-photography",
+      "title": "琛楀ご鎽勫奖锛氭崟鎹夊煄甯傜殑鍏夊奖鐬棿",
+      "category": "photography",
+      "date": "2026-06-18",
+      "readTime": "6 鍒嗛挓",
+      "excerpt": "璧板湪鍩庡競鐨勮閬撲笂锛岀敤闀滃ご璁板綍閭ｄ簺涓嶇粡鎰忕殑鐬棿銆?,
+      "tags": ["琛楁媿", "鏋勫浘"]
+    },
+    {
+      "slug": "golden-hour",
+      "title": "榛勯噾鏃跺埢锛氬浣曞埄鐢ㄨ嚜鐒跺厜鎷嶅嚭濂界収鐗?,
+      "category": "photography",
+      "date": "2026-06-10",
+      "readTime": "4 鍒嗛挓",
+      "excerpt": "鏃ュ嚭鏃ヨ惤鍓嶅悗鐨勯粍閲戞椂鍒绘槸鎽勫奖甯堟渶鐖辩殑鏃舵銆?,
+      "tags": ["鍏夌嚎", "鎶€宸?]
+    },
+    {
+      "slug": "watercolor-basics",
+      "title": "姘村僵鍏ラ棬锛氫粠绗竴绗斿紑濮?,
+      "category": "painting",
+      "date": "2026-06-16",
+      "readTime": "7 鍒嗛挓",
+      "excerpt": "姘村僵鐢荤殑榄呭姏鍦ㄤ簬鍏堕€忔槑鎰熷拰娴佸姩鎬с€?,
+      "tags": ["姘村僵", "鍏ラ棬"]
+    },
+    {
+      "slug": "sketch-daily",
+      "title": "姣忔棩閫熷啓锛氬潥鎸佺粯鐢荤殑鍔涢噺",
+      "category": "painting",
+      "date": "2026-06-08",
+      "readTime": "5 鍒嗛挓",
+      "excerpt": "姣忓ぉ鍧氭寔鐢讳竴寮犻€熷啓锛屼竴涓湀鍚庝細鏈変粈涔堝彉鍖栵紵",
+      "tags": ["閫熷啓", "涔犳儻"]
+    },
+    {
+      "slug": "sketch-test",
+      "title": "testtest",
+      "category": "painting",
+      "date": "2026-06-08",
+      "readTime": "5 鍒嗛挓",
+      "excerpt": "杩欐槸涓€娈垫祴璇曠敤渚嬶紝鐢ㄤ簬娴嬭瘯鏂囨湰娣诲姞鍐呭",
+      "tags": ["閫熷啓", "涔犳儻"]
+    }
+  ]
+}
