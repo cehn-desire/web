@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-           - name: Build
+      - name: Build
         run: npm run build
 
       - name: Create 404.html for SPA routing    ← 新增
